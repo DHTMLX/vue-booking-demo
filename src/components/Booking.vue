@@ -9,6 +9,13 @@ export default {
         this.booking = new Booking(this.$refs.container, {
             data: this.data,
         });
+
+        this.booking.setConfirmHandler(function(event){
+            const { confirm } = event;
+            setTimeout(() => {
+                Math.random() < 0.5 ? confirm.error() : confirm.done();
+            }, 1000);
+        });
     },
 
     unmounted() {
